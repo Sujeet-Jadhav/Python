@@ -1,0 +1,4 @@
+this is a example of the file handling
+in python.
+This is to explain
+the concept.

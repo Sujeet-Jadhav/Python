@@ -1,0 +1,72 @@
+class Person:
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+    def printPerson(self):
+        print(f'Name:{self.name} and Age :{self.age}')
+        return(self.name)
+class Student(Person):
+    def __init__(self,name,age,course,studid):
+        self.course=course
+        self.studid=studid
+        super().__init__(name,age)
+    def printStudent(self):
+       # p = Person("self",10)
+        #p.printPerson()
+        #print(Person.printPerson(self))
+        s=Person.printPerson(self)
+        print('s:'+s)
+        print(f'Studid :{self.studid} has taken Course:{self.course}')
+
+
+Stud1 = Student('A',20,'M.Sc',12)
+Stud1.printStudent()
+
+# Example for multilevel inheritance
+class RegularStud:
+    def __init__(self,rname,rid):
+        self.rname=rname
+        self.rid = rid
+    def printregular(self):
+        print(f'{self.rname}is a Regular student with student id {self.rid}')
+class PassedStud(RegularStud):
+    def __init__(self,rname,rid,grade):
+        self.grade = grade
+        super().__init__(rname,rid)
+    def printPassed(self):
+        print(f'This is a Passed student with grade {self.grade}')
+        RegularStud.printregular(self)
+
+class Alumni(PassedStud,RegularStud):
+    def __init__(self,rname,rid,grade,status):
+        self.status=status
+        super().__init__(rname,rid,grade)
+
+    def printAlumni(self):
+        RegularStud.printregular(self)
+        PassedStud.printPassed(self)
+        print(f'Status is {self.status}')
+A1 = Alumni('Sachin',10,'A','Alumnus')
+A1.printAlumni()
+
+#Multiple inheritance
+class PClassA:
+    def __init__(self,x):
+        self.x=x
+    def printclass(self):
+        print(f'THis is in Parent class A and x is ={self.x}')
+class PClassB:
+    def __init__(self,y):
+        self.y = y
+    def printclass(self):
+        print(f'THis is in Parent class B and y is ={self.y}')
+class ChClass(PClassB,PClassA):
+    def __init__(self,x,y):
+        #self.z = z
+        super().__init__(x)
+
+    def printclass(self):
+        super().printclass()
+        #print(f'THis is z and value is {self.z}')
+child1 = ChClass(10,20)
+child1.printclass()
